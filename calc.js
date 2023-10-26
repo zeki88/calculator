@@ -9,6 +9,8 @@ const btnSub = document.querySelector('#sub');
 const btnMult = document.querySelector('#mult');
 const btnDivi = document.querySelector('#divi');
 const btnResult = document.querySelector('#result');
+const clear = document.querySelector('#clear');
+const AllClear = document.querySelector('#allClear');
 let subVal1 = 0;
 let result = 0;
 let lastBtn = 'false';
@@ -75,6 +77,21 @@ btnResult.onclick = function() {
     screen[0] = Number(screenResult.textContent)
 }
 
+/*clear.onclick = function() {
+    screen.pop();
+    screenValue.textContent = screen.join('')
+    value.splice(0)
+    screenValue.attributes.value.nodeValue = Number(screen.join(''))
+}*/
+
+AllClear.onclick = function() {
+    value.splice(0)
+    screen.splice(0)
+    lastBtn = 'false'
+    screenResult.textContent = '0'
+    screenValue.textContent = '0'
+}
+
 btnAdd.onclick = function(){
     if (lastBtn == 'false') {
         lastBtn = 'add'
@@ -87,11 +104,11 @@ btnAdd.onclick = function(){
     screenValue.textContent = screen.join('');
     lastBtn = 'add'
     value.splice(0);
-    } else if (screen.length == 0) {
-        screen.push(0)
-        screen.push('+')
+    }  else {
+        screen[screen.length-1] = '+'
         screenValue.textContent = screen.join('');
-    }
+        lastBtn = 'add'
+        }
 }
 
 btnSub.onclick = function(){
@@ -106,7 +123,11 @@ btnSub.onclick = function(){
     screenValue.textContent = screen.join('');
     lastBtn = 'sub'
     value.splice(0);
-    }
+    } else {
+        screen[screen.length-1] = '-'
+        screenValue.textContent = screen.join('');
+        lastBtn = 'sub'
+        }
 }
 
 btnMult.onclick=function(){
@@ -126,6 +147,10 @@ btnMult.onclick=function(){
     screenValue.textContent = screen.join('');
     lastBtn = 'mult'
     value.splice(0);
+    } else {
+    screen[screen.length-1] = 'x'
+    screenValue.textContent = screen.join('');
+    lastBtn = 'mult'
     }
 }
 
@@ -146,7 +171,11 @@ btnDivi.onclick=function(){
     screenValue.textContent = screen.join('');
     lastBtn = 'divi'
     value.splice(0);
-    }
+    } else {
+        screen[screen.length-1] = '/'
+        screenValue.textContent = screen.join('');
+        lastBtn = 'divi'
+        }
 }
 
 screenValue.textContent = 0
